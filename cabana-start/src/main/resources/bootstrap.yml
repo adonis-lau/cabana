@@ -1,0 +1,63 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: cabana-start
+
+  #=================mysql-config==========
+  datasource:
+    initialization-mode: always
+    schema: classpath:schema.sql
+    data: classpath:data.sql
+    hikari:
+      master:
+        driverClassName: com.mysql.cj.jdbc.Driver
+        jdbc-url: jdbc:mysql://home.adonis-lau.bid:54603/cabana?useSSL=false&useUnicode=true&characterEncoding=UTF-8&autoReconnect=true&serverTimezone=Asia/Shanghai
+        username: root
+        password: 546085758
+      slave:
+        driverClassName: com.mysql.cj.jdbc.Driver
+        jdbc-url: jdbc:mysql://home.adonis-lau.bid:54603/cabana?useSSL=false&useUnicode=true&characterEncoding=UTF-8&autoReconnect=true&serverTimezone=Asia/Shanghai
+        username: root
+        password: 546085758
+
+  #=================nacos-config==========
+  cloud:
+    nacos:
+      config:
+        # Nacos认证信息
+        username: nacos
+        password: nacos
+        # 设置配置中心服务端地址
+        server-addr: https://www.xxoohub.fun
+        contextPath: nacos
+        # Nacos 配置中心的namespace。需要注意，如果使用 public 的 namcespace ，请不要填写这个值，直接留空即可
+        namespace: cabana
+      discovery:
+        # Nacos认证信息
+        username: nacos
+        password: nacos
+        # 设置配置中心服务端地址
+        server-addr: https://www.xxoohub.fun
+        contextPath: nacos
+        # Nacos 配置中心的namespace。需要注意，如果使用 public 的 namcespace ，请不要填写这个值，直接留空即可
+        namespace: cabana
+
+#================mybatis-plus-config==========
+mybatis-plus:
+  mapper-locations: classpath:mapper/*.xml
+  type-aliases-package: bid.adonis.lau.cabana.start.mybatis.entity
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+  global-config:
+    db-config:
+      logic-delete-field: delFlag  # 全局逻辑删除的实体字段名(since 3.3.0,配置后可以忽略不配置步骤2)
+      logic-delete-value: 1 # 逻辑已删除值(默认为 1)
+      logic-not-delete-value: 0 # 逻辑未删除值(默认为 0)
+
+#=================logging-config==========
+logging:
+  level:
+    org.springframework.web: INFO
+    bid.adonis.lau.cabana: DEBUG

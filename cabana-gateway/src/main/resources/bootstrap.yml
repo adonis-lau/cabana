@@ -1,0 +1,46 @@
+server:
+  port: 9001
+
+spring:
+  application:
+    name: cabana-gateway
+  cloud:
+    # Nacos帮助文档: https://nacos.io/zh-cn/docs/concepts.html
+    nacos:
+      config:
+        # Nacos认证信息
+        username: nacos
+        password: nacos
+        # 设置配置中心服务端地址
+        server-addr: https://www.xxoohub.fun
+        contextPath: nacos
+        # Nacos 配置中心的namespace。需要注意，如果使用 public 的 namcespace ，请不要填写这个值，直接留空即可
+        namespace: cabana
+      discovery:
+        # Nacos认证信息
+        username: nacos
+        password: nacos
+        # 设置配置中心服务端地址
+        server-addr: https://www.xxoohub.fun
+        contextPath: nacos
+        # Nacos 配置中心的namespace。需要注意，如果使用 public 的 namcespace ，请不要填写这个值，直接留空即可
+        namespace: cabana
+    #网关配置
+    gateway:
+      discovery:
+        locator:
+          # 开启gateway从nacos获取服务列表
+          enable: false
+      routes:
+        # 配置微服务cabana-start的服务路由转发
+        - id: cabana-start
+          uri: lb://cabana-start
+          predicates:
+            - Path=/cabana/**
+          filters:
+
+#=================logging-config==========
+logging:
+  level:
+    org.springframework.web: INFO
+    bid.adonis.lau.cabana: DEBUG
