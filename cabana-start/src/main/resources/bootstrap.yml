@@ -16,11 +16,30 @@ spring:
         jdbc-url: jdbc:mysql://home.adonis-lau.bid:54603/cabana?useSSL=false&useUnicode=true&characterEncoding=UTF-8&autoReconnect=true&serverTimezone=Asia/Shanghai
         username: root
         password: 546085758
+        type: com.zaxxer.hikari.HikariDataSource
+        auto-commit: true
+        connection-test-query: SELECT 1
+        connection-timeout: 30000
+        idle-timeout: 30000
+        max-lifetime: 1800000
+        maximum-pool-size: 100
+        minimum-idle: 10
+        pool-name: DatebookHikariCP
       slave:
         driverClassName: com.mysql.cj.jdbc.Driver
         jdbc-url: jdbc:mysql://home.adonis-lau.bid:54603/cabana?useSSL=false&useUnicode=true&characterEncoding=UTF-8&autoReconnect=true&serverTimezone=Asia/Shanghai
         username: root
         password: 546085758
+        type: com.zaxxer.hikari.HikariDataSource
+        auto-commit: true
+        connection-test-query: SELECT 1
+        connection-timeout: 30000
+        idle-timeout: 30000
+        max-lifetime: 1800000
+        maximum-pool-size: 100
+        minimum-idle: 10
+        pool-name: DatebookHikariCP
+
 
   #=================nacos-config==========
   cloud:
